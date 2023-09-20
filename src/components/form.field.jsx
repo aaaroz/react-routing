@@ -2,6 +2,7 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import ProductList from "../pages/product.list";
 import { v4 as uuidv4 } from "uuid";
+import { db } from "../dummy/data";
 
 export default function FormField() {
   // initialize all state
@@ -9,22 +10,10 @@ export default function FormField() {
   const [productCategory, setProductCategory] = useState("");
   const [productFreshness, setProductFreshness] = useState("brand new");
   const [productPrice, setProductPrice] = useState("");
-  const [productList, setProductList] = useState([
-    {
-      id: uuidv4(),
-      name: "Nikke 1",
-      category: "Hoodie",
-      freshness: "Brand New",
-      price: "28",
-    },
-    {
-      id: uuidv4(),
-      name: "Nikke 2",
-      category: "T-shirt",
-      freshness: "Brand New",
-      price: "22",
-    },
-  ]);
+  const [productList, setProductList] = useState(db);
+
+  console.log(productList);
+  console.log(db);
   const [editIndex, setEditIndex] = useState(null);
   const [error, setError] = useState(null);
   const [validated, setValidated] = useState(false);
@@ -70,6 +59,7 @@ export default function FormField() {
 
       //set a new object into a state
       setProductList([...productList, newProduct]);
+      db.push(newProduct);
       console.log(productList);
     }
     //set validation form
@@ -183,8 +173,7 @@ export default function FormField() {
               className="form-select"
               value={productCategory}
               onChange={handleProductCategoryChange}
-              required
-            >
+              required>
               <option value="">Choose one category</option>
               <option value="hoodie">Hoodie</option>
               <option value="t-shirt">T-Shirt</option>
@@ -255,8 +244,7 @@ export default function FormField() {
               name="additionalDescription"
               className="form-control"
               placeholder="add your description"
-              required
-            ></textarea>
+              required></textarea>
             <label htmlFor="additionalDescription">
               Additional Description
             </label>

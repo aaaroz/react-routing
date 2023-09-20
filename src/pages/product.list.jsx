@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import ProductDetail from "./product.detail";
 
 function ProductList({ productList, handleEditProduct, handleDeleteProduct }) {
   return (
@@ -18,9 +17,9 @@ function ProductList({ productList, handleEditProduct, handleDeleteProduct }) {
         </thead>
         <tbody>
           {productList.map((product, index) => (
-            <tr key={product.index}>
+            <tr key={index}>
               <td>
-                <Link to={`/product/${index + 1}`}>{index + 1}</Link>
+                <Link to={`/product/${product.id}`}>{index + 1}</Link>
               </td>
               <td>{product.name}</td>
               <td>{product.category}</td>
@@ -29,14 +28,12 @@ function ProductList({ productList, handleEditProduct, handleDeleteProduct }) {
               <td className="d-flex">
                 <button
                   className="btn btn-primary m-1 fw-medium fs-6"
-                  onClick={() => handleEditProduct(index)}
-                >
+                  onClick={() => handleEditProduct(index)}>
                   Edit
                 </button>
                 <button
                   className="btn btn-danger m-1 fw-medium fs-6"
-                  onClick={() => handleDeleteProduct(index)}
-                >
+                  onClick={() => handleDeleteProduct(index)}>
                   Delete
                 </button>
               </td>
