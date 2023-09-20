@@ -11,9 +11,6 @@ export default function FormField() {
   const [productFreshness, setProductFreshness] = useState("brand new");
   const [productPrice, setProductPrice] = useState("");
   const [productList, setProductList] = useState(db);
-
-  console.log(productList);
-  console.log(db);
   const [editIndex, setEditIndex] = useState(null);
   const [error, setError] = useState(null);
   const [validated, setValidated] = useState(false);
@@ -60,7 +57,6 @@ export default function FormField() {
       //set a new object into a state
       setProductList([...productList, newProduct]);
       db.push(newProduct);
-      console.log(productList);
     }
     //set validation form
     setValidated(true);
@@ -69,6 +65,7 @@ export default function FormField() {
     if (editIndex !== null) {
       const updatedProductList = [...productList];
       updatedProductList[editIndex] = {
+        id: uuidv4(),
         name: productName,
         category: productCategory,
         freshness: productFreshness,
@@ -173,7 +170,8 @@ export default function FormField() {
               className="form-select"
               value={productCategory}
               onChange={handleProductCategoryChange}
-              required>
+              required
+            >
               <option value="">Choose one category</option>
               <option value="hoodie">Hoodie</option>
               <option value="t-shirt">T-Shirt</option>
@@ -244,7 +242,8 @@ export default function FormField() {
               name="additionalDescription"
               className="form-control"
               placeholder="add your description"
-              required></textarea>
+              required
+            ></textarea>
             <label htmlFor="additionalDescription">
               Additional Description
             </label>

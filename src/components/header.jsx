@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import auth from "../utils/auth";
 
 export default function Header() {
   function randomNumber() {
@@ -61,8 +62,12 @@ export default function Header() {
               </a>
             </li>
             <li className="nav-item me-3">
-              <a className="nav-link link-primary" href="/#">
-                About
+              <a
+                className="nav-link link-primary"
+                href="/#"
+                onClick={() => auth.logout()}
+              >
+                Logout
               </a>
             </li>
           </ul>
