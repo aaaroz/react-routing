@@ -282,3 +282,7 @@ footer {
   color: #47b2e4;
   font-size: 13px;
 }
+.productImage {
+  width: 150px;
+  height: 150px;
+}

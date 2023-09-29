@@ -8,7 +8,7 @@ const auth = {
     return Cookies.set("token", token);
   },
   logout() {
-    window.location.href = "/login";
+    window.location.href = "/";
     return Cookies.remove("token");
   },
 };

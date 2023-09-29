@@ -8,6 +8,7 @@ export default function Header() {
     }
     console.log(getRandomInt(5));
   }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-expand-md bg-body-tertiary">
       <div className="container-md container-sm container-lg pb-1">
@@ -62,17 +63,51 @@ export default function Header() {
               </a>
             </li>
             <li className="nav-item me-3">
-              <a
-                className="nav-link link-primary"
-                href="/#"
-                onClick={() => auth.logout()}
-              >
-                Logout
-              </a>
+              {auth.isAuthorized() && <ButtonLogout />}
+              {!auth.isAuthorized() && <ButtonLogin />}
+            </li>
+            <li className="nav-item me-3">
+              <button type="button" className="btn btn-primary p-2">
+                <Link
+                  className="text-white text-decoration-none"
+                  to="/create-account"
+                >
+                  Sign Up
+                </Link>
+              </button>
+            </li>
+            <li className="nav-item me-3">
+              <button type="button" className="btn btn-primary p-2">
+                <Link
+                  className="text-white text-decoration-none"
+                  to="/login-account"
+                >
+                  Login
+                </Link>
+              </button>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+  );
+}
+
+function ButtonLogin() {
+  return (
+    <Link to="/login" className="nav-link link-primary text-decoration-none">
+      Login
+    </Link>
+  );
+}
+function ButtonLogout() {
+  return (
+    <a
+      className="nav-link link-primary"
+      href="/#"
+      onClick={() => auth.logout()}
+    >
+      Logout
+    </a>
   );
 }

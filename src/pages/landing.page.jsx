@@ -24,9 +24,7 @@ export default function LandingPage() {
                   <Link to="/create-product">Create Product</Link>
                 </button>
                 <button className="btn-watch" type="button">
-                  <Link to="/login" className="text-white text-decoration-none">
-                    Login
-                  </Link>
+                  Watch Video
                 </button>
               </div>
             </div>
