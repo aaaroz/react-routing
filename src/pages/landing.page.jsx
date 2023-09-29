@@ -3,6 +3,7 @@ import heroImg from "../assets/hero-img.png";
 import { Link } from "react-router-dom";
 import "../assets/style.css";
 import ModalWelcome from "../components/modal.welcome";
+import { convertCurrency } from "../utils/convert.currency";
 
 export default function LandingPage() {
   return (
@@ -109,3 +110,4 @@ export default function LandingPage() {
     </>
   );
 }
+convertCurrency(100, "USD", "IDR");
