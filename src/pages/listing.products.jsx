@@ -81,9 +81,9 @@ function ListingProducts() {
                     <Link to={`/product/${product.id}`}>
                       <button className="btn btn-primary">Detail</button>
                     </Link>
-                    {/* <Link to={`/update-product/${product.id}`}>
-                      <button className="btn btn-success">Edit</button>
-                    </Link> */}
+                    <Link to={`/update-product/${product.id}`}>
+                      <button className="btn btn-success">Edit Form</button>
+                    </Link>
                     <ModalInputEdit product={product} />
                     <button
                       className="btn btn-danger"

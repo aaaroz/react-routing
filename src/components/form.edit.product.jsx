@@ -20,7 +20,7 @@ function FormEditProduct() {
 
   useEffect(() => {
     if (product) {
-      setValue("productId", `${product.data.id}`);
+      setValue("id", `${product.data.id}`);
       setValue("productName", `${product.data.productName}`);
       setValue("productCategory", `${product.data.productCategory}`);
       setValue("addDescription", `${product.data.addDescription}`);
@@ -28,7 +28,6 @@ function FormEditProduct() {
       setValue("productFreshness", `${product.data.productFreshness}`);
       setValue("productImage", `${product.data.productImage}`);
     }
-    console.log(product);
   }, [product]);
 
   const {
@@ -41,10 +40,17 @@ function FormEditProduct() {
   });
 
   const onSubmit = (data) => {
-    const newData = data;
-    dispatch(fetchPutProductById(id, newData));
-    navigate("/list-product");
-    console.log(data);
+    if (data.productImage.length === 1) {
+      let imageUrl = URL.createObjectURL(data.productImage[0]);
+      const newData = data;
+      dispatch(fetchPutProductById({ ...newData, productImage: imageUrl }));
+      navigate("/product");
+    } else {
+      let imageUrl = product.data.productImage;
+      const newData = data;
+      dispatch(fetchPutProductById({ ...newData, productImage: imageUrl }));
+      navigate("/product");
+    }
   };
 
   return (
@@ -61,12 +67,12 @@ function FormEditProduct() {
         <div className="container">
           <form id="formUpdate" onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 px-5">
-              <label htmlFor="productId">Product Id</label>
+              <label htmlFor="id">Product Id</label>
               <input
                 type="number"
-                id="productId"
+                id="id"
                 className="form-control"
-                {...register("productId")}
+                {...register("id")}
                 disabled="disabled"
               />
             </div>
@@ -118,7 +124,6 @@ function FormEditProduct() {
                 type="radio"
                 className="form-check-input"
                 value="brand new"
-                checked={product.productFreshness === "brand new"}
                 {...register("productFreshness")}
               />
               <label htmlFor="brandNew" className="form-check-label">
@@ -131,7 +136,6 @@ function FormEditProduct() {
                 type="radio"
                 className="form-check-input"
                 value="secondhand"
-                checked={product.productFreshness === "secondhand"}
                 {...register("productFreshness")}
               />
               <label htmlFor="secondHand" className="form-check-label">
@@ -144,7 +148,6 @@ function FormEditProduct() {
                 type="radio"
                 className="form-check-input"
                 value="refurbished"
-                checked={product.productFreshness === "refurbished"}
                 {...register("productFreshness")}
               />
               <label htmlFor="refurbished" className="form-check-label">

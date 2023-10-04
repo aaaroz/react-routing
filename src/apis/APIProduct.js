@@ -63,9 +63,9 @@ export const APIProducts = {
     }
   },
 
-  updateProduct: async (id, payload) => {
+  updateProduct: async (id, data) => {
     try {
-      const result = await axios.put(`${APIURL}/products/${id}`, payload);
+      const result = await axios.put(`${APIURL}/products/${id}`, data);
       console.log(result);
       return result.data;
     } catch (error) {

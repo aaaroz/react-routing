@@ -3,7 +3,10 @@ import { APIProducts } from "../../apis/APIProduct";
 
 export const fetchPutProductById = createAsyncThunk(
   "fetch/putProduct",
-  APIProducts.updateProduct
+  async (data) => {
+    const result = await APIProducts.updateProduct(data.id, data);
+    return result;
+  }
 );
 
 const initialState = {
