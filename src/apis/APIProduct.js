@@ -5,7 +5,7 @@ const APIURL = "https://651a2054340309952f0ce26a.mockapi.io/api/v1";
 export const APIProducts = {
   getProducts: async () => {
     try {
-      const result = await axios.get(`${APIURL}/products`);
+      const result = await axios.get(`${APIURL}/productsxxx`);
       return result.data;
     } catch (error) {
       if (error instanceof AxiosError) {

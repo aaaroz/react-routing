@@ -26,7 +26,7 @@ const productsSlice = createSlice({
     });
     builder.addCase("fetch/getProducts/rejected", (state, { error }) => {
       state.status = "failed";
-      state.data = error.stack;
+      state.message = error.stack;
     });
   },
 });
