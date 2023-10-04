@@ -1,7 +1,11 @@
-import { Link } from "react-router-dom";
-import ProductDetail from "./product.detail";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteProduct, selectProducts } from "../store/product/product.slices";
+import ModalInputEdit from "../components/modal.input.edit";
 
-function ProductList({ productList, handleEditProduct, handleDeleteProduct }) {
+function ProductList() {
+  const products = useSelector(selectProducts);
+  const dispatch = useDispatch();
+
   return (
     <>
       <h3 className="text-center">List Product</h3>
@@ -12,30 +16,37 @@ function ProductList({ productList, handleEditProduct, handleDeleteProduct }) {
             <th scope="col">Product Name</th>
             <th scope="col">Product Category</th>
             <th scope="col">Product Freshness</th>
+            <th scope="col">Additional Description</th>
+            <th scope="col">Product Image</th>
             <th scope="col">Product Price</th>
-            <th scope="col">Action</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          {productList.map((product, index) => (
-            <tr key={product.index}>
+          {products.map((product, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{product.productName}</td>
+              <td>{product.productCategory}</td>
+              <td>{product.productFreshness}</td>
+              <td>{product.addDescription}</td>
               <td>
-                <Link to={`/product/${index + 1}`}>{index + 1}</Link>
+                <img
+                  className="align-item-center"
+                  src={product.productImage}
+                  alt="product image"
+                  width={50}
+                  height={50}
+                />
               </td>
-              <td>{product.name}</td>
-              <td>{product.category}</td>
-              <td>{product.freshness}</td>
-              <td>${product.price}</td>
-              <td className="d-flex">
+              <td>${product.productPrice}</td>
+              <td className="d-flex py-3 gap-1">
+                <ModalInputEdit product={product} />
                 <button
-                  className="btn btn-primary m-1 fw-medium fs-6"
-                  onClick={() => handleEditProduct(index)}
-                >
-                  Edit
-                </button>
-                <button
-                  className="btn btn-danger m-1 fw-medium fs-6"
-                  onClick={() => handleDeleteProduct(index)}
+                  className="btn btn-danger"
+                  onClick={() => {
+                    dispatch(deleteProduct({ id: product.id }));
+                  }}
                 >
                   Delete
                 </button>
