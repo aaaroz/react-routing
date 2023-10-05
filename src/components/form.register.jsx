@@ -26,7 +26,7 @@ function FormRegister() {
               type="text"
               id="firstName"
               className="form-control"
-              {...register("firstName")}
+              {...register("firstName", { required: true })}
             />
             {errors.firstName ? (
               <p className="text-danger text-center">
@@ -42,7 +42,7 @@ function FormRegister() {
               type="text"
               id="lastName"
               className="form-control"
-              {...register("lastName")}
+              {...register("lastName", { required: true })}
             />
             {errors.lastName ? (
               <p className="text-danger text-center">
@@ -58,7 +58,10 @@ function FormRegister() {
               type="text"
               id="username"
               className="form-control"
-              {...register("username")}
+              autoComplete="newUsername"
+              {...register("username", {
+                required: true,
+              })}
             />
             {errors.username ? (
               <p className="text-danger text-center">
@@ -74,6 +77,7 @@ function FormRegister() {
               type="email"
               id="email"
               className="form-control"
+              autoComplete="newEmail"
               {...register("email")}
             />
             {errors.email ? (
@@ -88,7 +92,8 @@ function FormRegister() {
               type="password"
               id="password"
               className="form-control"
-              {...register("password")}
+              autoComplete="newPassword"
+              {...register("password", { required: true })}
             />
             {errors.password ? (
               <p className="text-danger text-center">
@@ -104,6 +109,7 @@ function FormRegister() {
               type="password"
               id="confirmPassword"
               className="form-control"
+              autoComplete="confirmNewPassword"
               {...register("confirmPassword", { required: true })}
             />
             {errors.confirmPassword ? (

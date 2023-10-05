@@ -1,7 +1,11 @@
 import SetupRouters from "./routers";
 
 function App() {
-  return <SetupRouters />;
+  return (
+    <>
+      <SetupRouters />
+    </>
+  );
 }
 
 export default App;

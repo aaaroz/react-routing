@@ -44,6 +44,7 @@ export default function LandingPage() {
             className="form-control-lp"
             type="text"
             aria-label="default input example"
+            name="subscribe"
           />
           <button className="btn btn-primary subs p-2" type="button">
             Subscribe

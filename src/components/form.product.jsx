@@ -131,7 +131,7 @@ function FormProduct() {
             />
           </div>
           <div>
-            <label>Product Freshness</label>
+            <p>Product Freshness</p>
           </div>
           <div className="form-check">
             <input

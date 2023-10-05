@@ -1,22 +1,22 @@
 import { useState } from "react";
 import React from "react";
 import Header from "../components/header";
-import FormLogin from "../components/form.login";
 import logo from "../assets/bootstrap-logo.svg";
+import ListingProducts from "../components/listing.products";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/style.css";
 
-function LoginAccount() {
+function ListProduct() {
   // objek artikel untuk mengganti Bahasa Inggris atau Indonesia
   const article = {
     title: {
-      id: "Halaman Masuk",
-      en: "Login Page",
+      id: "Product List",
+      en: "List Product",
     },
 
     description: {
-      id: "Di bawah ini adalah contoh formulir yang dibuat seluruhnya dengan kontrol formulir Bootstrap. Setiap grup formulir yang diperlukan memiliki status validasi yang dapat dipicu dengan mencoba mengirimkan formulir tanpa menyelesaikannya.",
-      en: "Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.",
+      id: "Di bawah ini adalah contoh tabel yang dibuat seluruhnya dengan kontrol tabel Bootstrap. Setiap grup tabel yang diperlukan memiliki status validasi yang dapat dipicu dengan mencoba mengirimkan tabel tanpa menyelesaikannya.",
+      en: "Below is an example table built entirely with Bootstrap’s table controls. Each required table group has a validation state that can be triggered by attempting to submit the table without completing it.",
     },
 
     buttonText: {
@@ -74,11 +74,11 @@ function LoginAccount() {
           </button>
         </div>
         <div className="container px-5 justify-content-center">
-          <FormLogin />
+          <ListingProducts />
         </div>
       </div>
     </>
   );
 }
 
-export default LoginAccount;
+export default ListProduct;

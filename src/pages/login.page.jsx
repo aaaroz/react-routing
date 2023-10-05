@@ -40,6 +40,7 @@ export default function LoginPage() {
               id="username"
               name="username"
               className="form-control"
+              autoComplete="username"
               placeholder="enter your username"
             />
           </div>
@@ -50,6 +51,7 @@ export default function LoginPage() {
               id="password"
               name="password"
               className="form-control"
+              autoComplete="current-password"
               placeholder="enter your password"
             />
           </div>

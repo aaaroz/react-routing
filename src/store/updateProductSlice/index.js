@@ -26,7 +26,7 @@ const ProductsSlice = createSlice({
 
     builder.addCase("fetch/putProduct/fulfilled", (state, { payload }) => {
       state.status = "success";
-      state.data = { payload };
+      state.data = payload;
     });
 
     builder.addCase("fetch/putProduct/rejected", (state, { error }) => {

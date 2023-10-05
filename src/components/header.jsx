@@ -76,16 +76,6 @@ export default function Header() {
                 </Link>
               </button>
             </li>
-            <li className="nav-item me-3">
-              <button type="button" className="btn btn-primary p-2">
-                <Link
-                  className="text-white text-decoration-none"
-                  to="/login-account"
-                >
-                  Login
-                </Link>
-              </button>
-            </li>
           </ul>
         </div>
       </div>
@@ -100,7 +90,6 @@ function ButtonLogin() {
     </Link>
   );
 }
-
 function ButtonLogout() {
   return (
     <a

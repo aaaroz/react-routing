@@ -6,9 +6,17 @@ import { fetchPutProductById } from "../store/updateProductSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ProductSchema } from "../schema/product.schema";
 import { useForm } from "react-hook-form";
-import Header from "./header";
 
 function FormEditProduct() {
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(ProductSchema),
+  });
+
   const product = useSelector(selectProduct);
   const dispatch = useDispatch();
   const { id } = useParams();
@@ -28,16 +36,7 @@ function FormEditProduct() {
       setValue("productFreshness", `${product.data.productFreshness}`);
       setValue("productImage", `${product.data.productImage}`);
     }
-  }, [product]);
-
-  const {
-    register,
-    setValue,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(ProductSchema),
-  });
+  }, [product, setValue]);
 
   const onSubmit = (data) => {
     if (data.productImage.length === 1) {
@@ -55,7 +54,6 @@ function FormEditProduct() {
 
   return (
     <>
-      <Header />
       {product.status === "loading" && <p>Loading ...</p>}
       {product.status === "failed" && (
         <div>
@@ -64,7 +62,16 @@ function FormEditProduct() {
         </div>
       )}
       {product.status === "success" && (
-        <div className="container">
+        <div className="container content">
+          <div className="d-flex justify-content-end">
+            <button
+              className="btn btn-secondary"
+              type="button"
+              onClick={() => navigate("/product")}
+            >
+              Back To List Product
+            </button>
+          </div>
           <form id="formUpdate" onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-3 px-5">
               <label htmlFor="id">Product Id</label>
@@ -116,7 +123,7 @@ function FormEditProduct() {
               />
             </div>
             <div className="px-5">
-              <label>Product Freshness</label>
+              <p>Product Freshness</p>
             </div>
             <div className="form-check ms-4 px-5">
               <input
@@ -177,7 +184,7 @@ function FormEditProduct() {
                 {...register("productPrice")}
               />
             </div>
-            <div className="d-grid">
+            <div className="d-grid px-5 mb-5">
               <button className="btn btn-primary px-5" type="submit">
                 Submit
               </button>

@@ -26,7 +26,7 @@ const deleteProductSlice = createSlice({
     });
     builder.addCase("fetch/deleteProduct/rejected", (state, { error }) => {
       state.status = "failed";
-      state.message = error.stack;
+      state.data = error.stack;
     });
   },
 });

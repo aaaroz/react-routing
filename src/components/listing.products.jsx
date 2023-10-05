@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGetProducts, selectProducts } from "../store/productsSlice";
 import { Link } from "react-router-dom";
-import Header from "../components/header";
 import { fetchDeleteProduct } from "../store/deleteProductSlice";
-import ModalInputEdit from "../components/modal.input.edit";
 
 function ListingProducts() {
   const [isReload, setIsReload] = useState(false);
@@ -25,7 +23,6 @@ function ListingProducts() {
 
   return (
     <>
-      <Header />
       {stateProducts.status === "loading" && <p>Loading ...</p>}
       {stateProducts.status === "failed" && (
         <div>
@@ -35,7 +32,6 @@ function ListingProducts() {
       )}
       {stateProducts.status === "success" && (
         <div className="container">
-          <h3 className="text-center my-3">List Product</h3>
           <div className="d-flex justify-content-end">
             <button className="btn btn-primary">
               <Link
@@ -46,7 +42,7 @@ function ListingProducts() {
               </Link>
             </button>
           </div>
-          <table className="table table-hover table-bordered mt-3">
+          <table className="table table-striped table-hover table-bordered mt-3">
             <thead>
               <tr className="fs-7">
                 <th scope="col">No</th>
@@ -60,9 +56,9 @@ function ListingProducts() {
               </tr>
             </thead>
             <tbody>
-              {stateProducts.data.map((product) => (
+              {stateProducts.data.map((product, index) => (
                 <tr key={product.id}>
-                  <td>{product.id}</td>
+                  <td>{index + 1}</td>
                   <td>{product.productName}</td>
                   <td>{product.productCategory}</td>
                   <td>{product.productFreshness}</td>
@@ -72,25 +68,26 @@ function ListingProducts() {
                       className="align-item-center"
                       src={product.productImage}
                       alt="product"
-                      width={80}
-                      height={50}
+                      width={85}
+                      height={69}
                     />
                   </td>
                   <td>${product.productPrice}</td>
-                  <td className="d-flex py-3 gap-1">
-                    <Link to={`/product/${product.id}`}>
-                      <button className="btn btn-primary">Detail</button>
-                    </Link>
-                    <Link to={`/update-product/${product.id}`}>
-                      <button className="btn btn-success">Edit Form</button>
-                    </Link>
-                    <ModalInputEdit product={product} />
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => handleDelete(product.id)}
-                    >
-                      Delete
-                    </button>
+                  <td>
+                    <div className="d-flex py-3 gap-1">
+                      <Link to={`/product/${product.id}`}>
+                        <button className="btn btn-primary">Detail</button>
+                      </Link>
+                      <Link to={`/update-product/${product.id}`}>
+                        <button className="btn btn-success">Edit</button>
+                      </Link>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => handleDelete(product.id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))}
