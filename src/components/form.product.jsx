@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchPostProducts } from "../store/createProductSlice";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function FormProduct() {
   const dispatch = useDispatch();
@@ -38,7 +39,9 @@ function FormProduct() {
           id: nextId++,
           ...data,
         })
-      );
+      ).then(() => {
+        toast.success("Data Added Succesfully.");
+      });
       setData(emptyData);
       inputImg.current.value = null;
       setValidated(false);

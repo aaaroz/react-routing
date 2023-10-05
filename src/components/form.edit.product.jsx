@@ -6,6 +6,7 @@ import { fetchPutProductById } from "../store/updateProductSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { ProductSchema } from "../schema/product.schema";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 function FormEditProduct() {
   const {
@@ -42,12 +43,20 @@ function FormEditProduct() {
     if (data.productImage.length === 1) {
       let imageUrl = URL.createObjectURL(data.productImage[0]);
       const newData = data;
-      dispatch(fetchPutProductById({ ...newData, productImage: imageUrl }));
+      dispatch(
+        fetchPutProductById({ ...newData, productImage: imageUrl })
+      ).then(() => {
+        toast.success("Data Edited Succesfully.");
+      });
       navigate("/product");
     } else {
       let imageUrl = product.data.productImage;
       const newData = data;
-      dispatch(fetchPutProductById({ ...newData, productImage: imageUrl }));
+      dispatch(
+        fetchPutProductById({ ...newData, productImage: imageUrl })
+      ).then(() => {
+        toast.success("Data Edited Succesfully.");
+      });
       navigate("/product");
     }
   };

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchGetProducts, selectProducts } from "../store/productsSlice";
 import { Link } from "react-router-dom";
 import { fetchDeleteProduct } from "../store/deleteProductSlice";
+import { toast } from "react-toastify";
 
 function ListingProducts() {
   const [isReload, setIsReload] = useState(false);
@@ -16,11 +17,14 @@ function ListingProducts() {
 
   const handleDelete = (id) => {
     if (window.confirm("Do you want delete this product?")) {
-      dispatch(fetchDeleteProduct(id));
+      dispatch(fetchDeleteProduct(id)).then(() => {
+        toast.warn("Data Deleted Succesfully");
+      });
       setIsReload(true);
     }
   };
 
+  console.log(stateProducts);
   return (
     <>
       {stateProducts.status === "loading" && <p>Loading ...</p>}
