@@ -47,39 +47,43 @@ export default function Header() {
                 </Link>
               </button>
             </li>
-            <li className="nav-item me-4">
+            <li className="nav-item me-4 mt-2">
               <a className="nav-link link-primary" href="/#">
                 Features
               </a>
             </li>
-            <li className="nav-item me-3">
+            <li className="nav-item me-3 mt-2">
               <a className="nav-link link-primary" href="/#">
                 Pricing
               </a>
             </li>
-            <li className="nav-item me-3">
+            <li className="nav-item me-3 mt-2">
               <a className="nav-link link-primary" href="/#">
                 FAQs
               </a>
             </li>
-            <li className="nav-item me-3">
+            <li className="nav-item me-3 mt-2 ">
               {auth.isAuthorized() && <ButtonLogout />}
               {!auth.isAuthorized() && <ButtonLogin />}
             </li>
             <li className="nav-item me-3">
-              <button type="button" className="btn btn-primary p-2">
-                <Link
-                  className="text-white text-decoration-none"
-                  to="/create-account"
-                >
-                  Sign Up
-                </Link>
-              </button>
+              {!auth.isAuthorized() && <ButtonSignup />}
             </li>
           </ul>
         </div>
       </div>
     </nav>
+  );
+}
+
+function ButtonSignup() {
+  return (
+    <Link
+      to="/create-account"
+      className="nav-link link-primary text-decoration-none"
+    >
+      <button className="btn btn-primary">Sign up</button>
+    </Link>
   );
 }
 

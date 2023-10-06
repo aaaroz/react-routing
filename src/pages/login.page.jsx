@@ -1,10 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import auth from "../utils/auth";
 import Header from "../components/header";
+import { toast } from "react-toastify";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { search } = useLocation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,6 +25,10 @@ export default function LoginPage() {
       const { token } = await res.json();
       auth.storeAuthCredential(token);
       let returnTo = "/";
+      const params = new URLSearchParams(search);
+      const redirectTo = params.get("return_to");
+      if (returnTo) returnTo += redirectTo;
+      toast.success("Login successfully!");
       return navigate(returnTo);
     });
   };
